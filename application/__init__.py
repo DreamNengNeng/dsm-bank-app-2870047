@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask    
 
-app = Flask(__name__)
+app = Flask(__name__)   #initialize app within application running on Flask (define the URL for the application)
 
 from application import routes
 

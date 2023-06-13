@@ -8,13 +8,13 @@ import pandas as pd
 
 #decorator to access the app
 @app.route("/")
-@app.route("/index")
+@app.route("/index")  
 def index():
     return render_template("index.html")
 
 #decorator to access the service
 @app.route("/bankclassify", methods=['GET', 'POST'])
-def bankclassify():
+def bankclassify():  #extract all the inputs from the form and send to API
 
     #extract form inputs
     age = request.form.get("age")
@@ -26,13 +26,12 @@ def bankclassify():
     housing = request.form.get("housing")
     loan = request.form.get("loan")
 
-   #convert data to json
+   #convert data to json AND send to API
     input_data = json.dumps({"age": age, "job": job, "marital": marital, "education": education, "default": default, "balance": balance, "housing": housing, "loan": loan})
 
     #url for bank marketing model
-    #url = "http://localhost:5000/api"
-    url = "https://bank-model-app.herokuapp.com/api"
-  
+    url = "http://localhost:5000/api"
+    # url = "https://bank-model-app.herokuapp.com/api"
     #post data to url
     results =  requests.post(url, input_data)
 
